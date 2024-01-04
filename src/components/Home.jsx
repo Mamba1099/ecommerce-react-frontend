@@ -1,27 +1,26 @@
-import {useEffect, useState} from 'react';
-
-const  Home = () => {
-    const [data, setData] = useState([]);
+import React, {useState, useEffect} from 'react'
+function Home () {
+    const [data, SetData] = useState([])
 
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/posts')
-            .then(response => response.json())
-            .then(json => setData(json))
+        .then(response => response.json())
+        .then(json => SetData(json))
     }
-    , []);
+    , [])
 
-    return (
-        <div>
-            <h1>Home</h1>
-            <ul>
-                {data.map(item => (
-                    <li key={item.id}>
-                        {item.title}
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
+ return (
+    <>
+    <h1>Home</h1>
+    <ul>
+        {data.map((item => (
+            <li key={item.id}>{item.title}</li>
+        )))}
+    </ul>
+
+
+    </>
+ )
 }
 
-export default Home;
+export default Home
