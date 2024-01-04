@@ -1,19 +1,13 @@
-import { Outlet, Link } from "react-router-dom";
+/* eslint-disable react/prop-types */
+
+import { Outlet } from "react-router-dom";
+
+import Navbar from "./components/navbar/Navbar";
 
 export default function Layout() {
   return (
     <>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-        </ul>
-      </nav>
-
+      <Navbar />
       <Outlet />
     </>
   );
