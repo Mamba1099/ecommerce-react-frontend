@@ -30,8 +30,8 @@ export function DesktopNav() {
                 as="a"
                 p={2}
                 href={navItem.href ?? "#"}
-                fontSize={"sm"}
-                fontWeight={500}
+                fontSize={"xl"}
+                fontWeight={10}
                 color={linkColor}
                 _hover={{
                   textDecoration: "none",
@@ -49,7 +49,7 @@ export function DesktopNav() {
                 bg={popoverContentBgColor}
                 p={4}
                 rounded={"xl"}
-                minW={"sm"}
+                minW={"xl"}
               >
                 <Stack>
                   {navItem.children.map((child) => (
@@ -74,7 +74,7 @@ export function DesktopSubNav({ label, href, subLabel }) {
       display={"block"}
       p={2}
       rounded={"md"}
-      _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
+      _hover={{ bg: useColorModeValue("pink.100", "gray.900") }}
     >
       <Stack direction={"row"} align={"center"}>
         <Box>
