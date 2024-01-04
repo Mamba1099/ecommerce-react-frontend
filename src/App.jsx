@@ -1,7 +1,11 @@
+import React from 'react'
+import {Home} from './components/Home.jsx'
 
 function App() {
  return (
-  <div>E-commerce</div>
+    <>
+    <Home/>
+    </>
  )
 }
 
