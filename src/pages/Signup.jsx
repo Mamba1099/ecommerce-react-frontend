@@ -14,22 +14,21 @@ import {
 } from "@chakra-ui/react";
 
 export default function Signup() {
-    const [values ,setValues] = useState({
-        username:"",
-        email:"",
-        password:"",
-    });
+  const [values, setValues] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
 
-    function handleChange(event){
-        const {name,value} = event.target;
-        setValues((prev) => ({
-            ...prev
-        }));
-    };
-    async function handleSubmit(event){
-        event.preventDefault();
-
-    }
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setValues((prev) => ({
+      ...prev,
+    }));
+  }
+  async function handleSubmit(event) {
+    event.preventDefault();
+  }
   return (
     <Flex
       minH={"100vh"}
