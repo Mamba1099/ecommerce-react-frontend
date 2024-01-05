@@ -28,9 +28,11 @@ export function DesktopNav() {
             <PopoverTrigger>
               <Box
                 as="a"
-                p={2}
+                px={4}
+                py={2}
+                
                 href={navItem.href ?? "#"}
-                fontSize={"xl"}
+                fontSize={"sm"}
                 fontWeight={10}
                 color={linkColor}
                 _hover={{

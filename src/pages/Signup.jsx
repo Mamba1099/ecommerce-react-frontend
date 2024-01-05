@@ -23,11 +23,25 @@ export default function Signup() {
     function handleChange(event){
         const {name,value} = event.target;
         setValues((prev) => ({
-            ...prev
+            ...prev,
+            [name]:value,
         }));
-    };
+    }
     async function handleSubmit(event){
         event.preventDefault();
+        const {username,email,password} = values;
+        const res = await fetch("",{
+          method:"POST",
+          headers:{
+            "Content-Type":"application/json",
+          },
+          body:JSON.stringify({
+            username,
+            email,
+            password,
+          })
+        });
+        console.log(res);
 
     }
   return (
@@ -50,15 +64,16 @@ export default function Signup() {
           <Stack spacing={4}>
             <FormControl id="name">
               <FormLabel>Username</FormLabel>
-              <Input type="text" />
+
+              <Input onChange={handleChange} name="username" type="text" />
             </FormControl>
             <FormControl id="email">
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input onChange={handleChange} value="doe@example.com" name="email" type="email" />
             </FormControl>
             <FormControl id="password">
               <FormLabel>Password</FormLabel>
-              <Input type="password" />
+              <Input onChange={handleChange} name="password" type="password" />
             </FormControl>
             <Stack spacing={10}>
               <Stack
@@ -75,8 +90,9 @@ export default function Signup() {
                 _hover={{
                   bg: "blue.500",
                 }}
+                onClick={handleSubmit}
               >
-                Sign in
+                Submit
               </Button>
             </Stack>
           </Stack>
