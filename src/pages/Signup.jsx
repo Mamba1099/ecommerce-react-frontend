@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+  useToast,
   Flex,
   Box,
   FormControl,
@@ -14,36 +15,63 @@ import {
 } from "@chakra-ui/react";
 
 export default function Signup() {
+  const toast = useToast();
   const [values, setValues] = useState({
     username: "",
     email: "",
     password: "",
   });
 
-    function handleChange(event){
-        const {name,value} = event.target;
-        setValues((prev) => ({
-            ...prev,
-            [name]:value,
-        }));
-    }
-    async function handleSubmit(event){
-        event.preventDefault();
-        const {username,email,password} = values;
-        const res = await fetch("",{
-          method:"POST",
-          headers:{
-            "Content-Type":"application/json",
-          },
-          body:JSON.stringify({
-            username,
-            email,
-            password,
-          })
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setValues((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const { username, email, password } = values;
+    try {
+      const res = await fetch("http://127.0.0.1:8000/items/user-register/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username,
+          email,
+          password,
+        }),
+      });
+      console.log(res);
+      if (res.status !== 201) {
+        toast({
+          title: "Error Occured.",
+          description: "Something Went Wrong Please Try Again.",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
         });
-        console.log(res);
-
+      } else {
+        toast({
+          title: "Account created.",
+          description: "We've created your account for you.",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error Occured.",
+        description: "Unable to contact server",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
     }
+  }
   return (
     <Flex
       minH={"100vh"}
@@ -69,7 +97,7 @@ export default function Signup() {
             </FormControl>
             <FormControl id="email">
               <FormLabel>Email address</FormLabel>
-              <Input onChange={handleChange} value="doe@example.com" name="email" type="email" />
+              <Input onChange={handleChange} name="email" type="email" />
             </FormControl>
             <FormControl id="password">
               <FormLabel>Password</FormLabel>
